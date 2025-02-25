@@ -38,6 +38,7 @@ function reservarArmario() {
   armarioEmprestado.dataReserva = new Date().toLocaleString();
 
  // Calculamos a data e hora para entrega das chaves (prazo de 24h).
+ let dataReserva = newDate();
  let dataEntrega = new Date(dataReserva.getTime() + 24 * 60 * 60 * 1000);
  armarioEmprestado.dataEntrega = dataEntrega.toLocaleString();
   
