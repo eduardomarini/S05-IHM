@@ -32,15 +32,16 @@ function reservarArmario() {
   let armarioSorteado = armariosDisponiveis[Math.floor(Math.random() * armariosDisponiveis.length)];
   
   // Depois localizamos o armário emprestado na lista de armarios e mudamos o status do armário.
-  let armarioEmprestado = armarios.find(armario => armario.id === armarioSorteado.id).status = false;
+  let armarioEmprestado = armarios.find(armario => armario.id === armarioSorteado.id);
+  armarioEmprestado.status = false;
 
   // Adicionamos a data e hora da reserva ao armário emprestado.
   armarioEmprestado.dataReserva = new Date().toLocaleString();
 
- // Calculamos a data e hora para entrega das chaves (prazo de 24h).
- let dataReserva = newDate();
- let dataEntrega = new Date(dataReserva.getTime() + 24 * 60 * 60 * 1000);
- armarioEmprestado.dataEntrega = dataEntrega.toLocaleString();
+  // Calculamos a data e hora para entrega das chaves (prazo de 24h).
+  let dataReserva = new Date(); // corrigido aqui, agora estamos pegando a data correta
+  let dataEntrega = new Date(dataReserva.getTime() + 24 * 60 * 60 * 1000);
+  armarioEmprestado.dataEntrega = dataEntrega.toLocaleString();
   
   // Finalmente, mudamos a pendencia do usuário para verdadeira.
   usuario.pendencia = true;
@@ -50,5 +51,4 @@ function reservarArmario() {
 
   console.log(usuario);
   console.log(armarios);
-
 }
